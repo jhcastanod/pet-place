@@ -1,0 +1,41 @@
+<div class="container"
+    fxLayout
+    fxLayout.xs="column"
+    fxLayoutAlign="center"
+    fxLayoutGap="10px">
+
+  <div class="search-bar" fxFlex="40%">
+    <mat-form-field appearance="outline">
+      <mat-label>Search</mat-label>
+      <input 
+        matInput
+        placeholder="i.e: host, pet category, breed" 
+        [ngModel]="searchTxt" 
+        (ngModelChange)="modelChange($event)">
+    </mat-form-field>
+  </div>
+</div>
+
+<div
+  class="container"
+  fxLayout
+  fxLayout.xs="column"
+  fxLayoutAlign="center"
+  fxLayoutGap="20px"
+  fxLayoutGap.xs="0"
+  *ngIf="results?.length > 0;else noResults">
+      <app-result-item 
+      class="result-item"
+      *ngFor="let result of results" 
+      [result]="result">
+    </app-result-item>
+</div>
+
+
+<ng-template #noResults>
+  <div class="container"
+    fxLayout
+    fxLayoutAlign="center">
+      <p>No results found. :(</p>
+  </div>
+</ng-template>
